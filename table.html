@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form">
+        <input type="text" placeholder="name" id="name">
+        <input type="text" placeholder="age" id="age">
+        <input type="text" placeholder="Scince Marks" id="science">
+        <input type="text" placeholder="English Marks" id="english">
+        <input type="text" placeholder="Mathematics Marks" id="maths">
+        <button>Submit</button>
+    </form>
+
+    <table>
+    </table>
+
+    <script>
+        var btn = document.querySelector("button");
+
+
+        function deleteItem() {
+            var target = event.target;
+            target.parentNode.remove();
+        }
+
+        function createTable(e) {
+            e.preventDefault();
+
+            var name = document.querySelector("#name").value;
+            var age = document.querySelector("#age").value;
+            var science = document.querySelector("#science").value;
+            var english = document.querySelector("#english").value;
+            var maths = document.querySelector("#maths").value;
+
+            var row = document.createElement("tr");
+            var col1 = document.createElement("td");
+            var col2 = document.createElement("td");
+            var col3 = document.createElement("td");
+            var col4 = document.createElement("td");
+            var col5 = document.createElement("td");
+            var total = document.createElement("td");
+            var delBtn = document.createElement("button");
+
+            col1.textContent = name;
+            col2.textContent = age;
+            col3.textContent = science;
+            col4.textContent = english;
+            col5.textContent = maths;
+            delBtn.textContent = "Delete";
+            delBtn.setAttribute("class", "red");
+
+            var sum = Number(col3.textContent) + Number(col4.textContent) + Number(col5.textContent);
+            total.textContent = sum;
+
+            row.appendChild(col1);
+            row.appendChild(col2);
+            row.appendChild(col3);
+            row.appendChild(col4);
+            row.appendChild(col5);
+            row.appendChild(total);
+            row.appendChild(delBtn);
+            var parent = document.querySelector("table");
+            parent.appendChild(row);
+
+
+            delBtn.addEventListener("click", deleteItem);
+            document.querySelector("#name").value = "";
+            document.querySelector("#age").value = "";
+            document.querySelector("#science").value = "";
+            document.querySelector("#english").value = "";
+            document.querySelector("#maths").value = "";
+        }
+
+        btn.addEventListener("click", createTable);
+    </script>
+</body>
+
+</html>
